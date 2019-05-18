@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        Unlock the hidden capabilities of your Xiaomi Mi Router: Padavan installation guide
+    </title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:500|Rubik:400,700,900&display=swap');
+        
+
+        body {
+            font: normal 20px/30px 'Rubik', helvetica, arial, sans-serif;
+            color: #222;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        a{
+            color: black;  
+        }
+        
+        a:visited{
+            color: #444;  
+        }
+        
+        img {
+            display: block;
+            margin: 1.3em auto;
+            max-width: 100%;
+        }
+        
+        h1 {
+            font-size: 34px;
+            line-height: 36px;
+            font-weight: 900;
+        }
+
+        h2 {
+            padding: 40px 0 0 0;
+            font-weight: 700;
+            font-size: 27px;
+            margin: 5px 0;
+        }
+
+        div {
+            text-align: left;
+            max-width: 768px;
+            margin: 0 auto;
+            padding: 50px 15px 30px;
+        }
+
+        code { 
+            font-size: 18px;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 500;
+            background-color: #eee;
+        }
+        
+    </style>
+</head>
+    <h1> </h1>
+
+    
+<body lang="en">
+    <div>
+        <h1>Unlock the hidden capabilities of your Xiaomi Mi Router: Padavan installation guide</h1>
+        <br>
+        <p>
+            You've just got your new Xiaomi router out of the box, plugged everything in, powered the router on, opened the router's web interface and got ready to set it up, and... everything is in Chinese with no way to change the language? You need an app on a mobile device just to perform the initial setup?
+        </p>
+        <p>
+            You've managed to configure the internet access, but now you need to change some settings. With some guesswork or a translator, you've got through the web interface, found settings that you were searching for, and... the router needs to reboot just to change that setting.
+        </p>
+        <p>
+            After a couple of reboots and fumbling around the UI you have finally configured the router the way you need it to be, but there's something missing. There is a USB port, but you can't find a setting to share files over the network from USB drives? You can't turn on VPN, download torrents or host servers on the router, even though the hardware inside is more than capable?
+        </p>
+        <p>
+            You may be left a bit disappointed with your new device. Fortunately, there is a way to fix all these problems.
+        </p>
+        <h2>What is Padavan firmware?</h2>
+        <p>
+            Padavan is an open-source custom firmware originally made by <a href="https://bitbucket.org/padavan/rt-n56u/src/master/" rel="external">Andy Padavan</a> for ASUS routers. This firmware was created to get maximum features and performance from MediaTek SoCs, the same ones that power Xiaomi routers.
+        </p>
+        <h2>Why should I install Padavan?</h2>
+        <ul>
+            <li>Very fast, intuitive and customizable web interface in English instead of Chinese</li>
+            <li>Privacy - Padavan firmware is open-source</li>
+            <li>Unlike the official firmware, most setting changes don't require a reboot</li>
+            <li>USB applications: FTP server, Torrent client (Transmission), SMB Server, UPnP/DLNA Media Server, iTunes Media Server (Firefly)</li>
+            <li>Padavan includes VPN server and client</li>
+            <li>You can enable SSH or telnet access to the router</li>
+            <li>Padavan supports Entware packages so you can install additional applications</li>
+        </ul>
+        <h2>Okay, so how do I install it?</h2>
+        <p>First, you'll need to get SSH access to your router, for that you'll download and flash a developer version of the official firmware, and download and install official SSH toolkit. Then, if you aren't already using Linux, you'll need to set up a Linux virtual machine, and from there, download and run a script to build and flash the Padavan firmware image for your router.</p>
+        <p>If that seems complicated to you - don't worry! This is actually quite simple, and I will guide you through every step.</p>
+        <h3>Requirements:</h3>
+        <ul>
+            <li>Your Xiaomi Mi Router 3G/3C/3/Mini</li>
+            <li>Internet connection</li>
+            <li>A PC or a laptop connected to your router</li>
+            <li>An Android or iOS device for linking router to your Mi account</li>
+            <li>A USB flash drive</li>
+            <li>A needle, toothpick, or a SIM tray removal tool</li>
+        </ul>
+        <p>
+            We are using a Xiaomi Mi Router 3G in this guide, but you can still follow this guide if you have another supported model, instructions for your router should be the same.
+        </p>
+        <br>
+        <h2>Installation steps:</h2>
+        <ol>
+            <li>
+                <a href="#Download and flash developer ROM">Download and flash developer ROM</a>
+            </li>
+            <li>
+                <a href="#Download the SSH toolkit">Download the SSH toolkit</a>
+            </li>
+            <li>
+                <a href="#Get SSH access">Get SSH access</a>
+            </li>
+            <li>
+                <a href="#Set up a Linux Virtual Machine">Set up a Linux Virtual Machine</a>
+            </li>
+            <li>
+                <a href="#Build and flash Padavan">Build and flash Padavan</a>
+            </li>
+        </ol>
+        <br>
+        <h2 id="Download and flash developer ROM">Download and flash developer ROM</h2>
+        <p>
+            Our first step is to download and flash an official developer firmware ROM image from Xiaomi. You can download it from the Xiaomi site by clicking on <a href="http://www1.miwifi.com/miwifi_download.html" rel="external">this link</a>.
+        </p>
+        <a href="screenshots/1.png">
+			<img src="screenshots/1.png" />
+		</a>
+        <p>
+            Go to the ROM section by clicking on the ROM button on the top and then scroll down until you find links for your router, in our case, we are looking for a "ROM for R3G" string.
+        </p>
+        <a href="screenshots/2.png">
+			<img src="screenshots/2.png" />
+		</a>
+        <p>
+            Download the developer ROM image by clicking on the blue button in the <b>right</b> column.</p>
+        <p>
+            Once it finishes downloading, go to <a href="http://miwifi.com" rel="external">your router's web interface</a> and enter your login and password.
+        </p>
+        <a href="screenshots/3.png">
+			<img src="screenshots/3.png" />
+		</a>
+        <p>
+            Now we are going to flash the new ROM onto the router. Click on the third link from in the top bar of the router's web interface, then click on the round yellow button with an "i" letter on the right, and finally, click on the gray button below the colored buttons.
+        </p>
+        <a href="screenshots/4.png">
+			<img src="screenshots/4.png" />
+		</a>
+        <p>
+            Here, click on the <b>Choose file</b> button and pick the ROM image that you have just downloaded. After that, click on the blue button.
+        </p>
+        <a href="screenshots/5.png">
+			<img src="screenshots/5.png" />
+		</a>
+        <p>
+            You will be presented with a checkbox and a warning. The warning tells you that version of the ROM you're trying to flash is older than the current one installed on your router and advises you to reset your router's settings after flashing - tick the checkbox and this will be done automatically. After that, click on the blue button to launch the flashing process. 
+        </p>
+        <p>
+            Notice that the front LED on your router turns orange - after a couple of minutes, it will turn blue again. That would mean that the ROM image flashed successfully, and we are ready to take our next step.
+        </p>
+        <h2 id="Download the SSH toolkit">Download the SSH toolkit</h2>
+        <p>
+            Our second step is to get SSH access to the router. To do that, first perform basic router setup with your method of choice, just like you did when you initially configured the router after you bought it. To do that, install <a href="http://www1.miwifi.com/app_download.html" rel="external">an app</a> for your Android or iOS device, open it, log in to your Mi account and follow on-screen instructions when prompted to configure a new router.
+        </p>
+        <p>
+            Once you've configured your router and gained Internet access, you need to download and flash the SSH toolkit from Xiaomi. Follow <a href="https://d.miwifi.com/rom/ssh" rel="external">this link</a> and log in with the same Mi account that you used to set up your router.
+        </p>
+        <a href="screenshots/6.png">
+			<img src="screenshots/6.png" />
+		</a>
+        <p>
+            You should see a page with a login and a password for connecting to your router via SSH and a button for downloading the SSH toolkit. Write your SSH login and password down! You will need them soon.
+        </p>
+        <a href="screenshots/7.png">
+			<img src="screenshots/7.png" />
+		</a>
+        <p>
+            If your browser is not able to connect to the page, check the address bar. The address should begin with <code>"https://"</code>, correct it if needed.
+        </p>
+        <a href="screenshots/8.png">
+			<img src="screenshots/8.png" />
+		</a>
+        <p>
+            Click on the download button. You'll get a warning about opening root access to your router via SSH. Click on the right button and the SSH toolkit file should start downloading. Once again, if your browser isn't able to connect when trying to download the file, check if you have the <code>"https://"</code> in the address bar.
+        </p>
+        <h2 id="Get SSH access">Get SSH access</h2>
+        <p>
+            The next step is to get the SSH toolkit file that you've just downloaded onto the router. Plug your USB flash drive into your PC and format it to FAT32, copy the SSH toolkit on it, then unplug it from the PC.
+        </p>
+        <p>
+            Here goes the tricky part: unplug the power cord from your router, plug in the USB flash drive with the SSH toolkit on it, press and hold the pin-hole reset button on the back of the router with a needle, toothpick, or a SIM tray removal tool, and, while holding the reset button, plug in the power cord. The front LED on the router should turn orange, and when it starts blinking, you can let go of the reset button.
+        </p>
+        <p>
+            When the front LED turns back to blue once again, you're ready for the next step. For that, we'll need a working Linux environment. If you're already using Linux, you can skip the next step and go straight to <a href="#Build and flash Padavan">Build and flash Padavan</a>. If you're on Windows or Mac, continue with the next step.
+        </p>
+        <h2 id="Set up a Linux Virtual Machine">Set up a Linux Virtual Machine</h2>
+        <p>
+            For our Linux Virtual Machine, in this guide, we'll use a user-friendly distro called <a href="https://kubuntu.org/Kubuntu" rel="external">Kubuntu</a>, but you can use any Debian-based distribution. Follow <a href="https://kubuntu.org/getkubuntu/" rel="external">this link</a> and download Kubuntu 18.04.2 LTS image, 64-bit or 32-bit, depending on your system.
+        </p>
+        <p>
+            To create a virtual machine, we'll use <a href="https://www.virtualbox.org/wiki/Download_Old_Builds_5_2" rel="external">VirtualBox 5.2</a>, which is supported on both 64-bit and 32-bit machines, but you can use other virtualization tools, like <a href="https://www.vmware.com/products/workstation-player.html" rel="external">VMware Workstation Player</a>, if you like.
+        </p>
+        <p>
+            Download the latest VirtualBox 5.2 release for your operating system from <a href="https://www.virtualbox.org/wiki/Download_Old_Builds_5_2" rel="external">here</a> and install it using default options. After the installation process is finished, start VirtualBox.
+        </p>
+        <a href="screenshots/9.png">
+			<img src="screenshots/9.png" />
+		</a>
+        <p>
+            You should see a VirtualBox Manager window pop up. Click on the <b>New</b> button.
+        </p>
+        <a href="screenshots/10.png">
+			<img src="screenshots/10.png" />
+		</a>
+        <p>
+            In the opened window specify a name for your new VM, select <b>Linux</b> for Type, <b>Ubuntu (64-bit)</b> or <b>Ubuntu (32-bit)</b> for Version, depending on the version that you've downloaded, and click <b>Next</b>.
+        </p>
+        <a href="screenshots/11.png">
+			<img src="screenshots/11.png" />
+		</a>
+        <p>
+            Select the amount of memory that you can allocate to the VM (more memory = better), and click <b>Next</b>.
+        </p>
+        <a href="screenshots/12.png">
+			<img src="screenshots/12.png" />
+		</a>
+        <p>
+            Select <b>Create a virtual hard disk now</b>, and click <b>Next</b>.
+        </p>
+        <a href="screenshots/13.png">
+			<img src="screenshots/13.png" />
+		</a>
+        <p>
+            Select <b>VDI</b>, and click <b>Next</b>.
+        </p>
+        <a href="screenshots/14.png">
+			<img src="screenshots/14.png" />
+		</a>
+        <p>
+            Select <b>Create a virtual hard disk now</b>, and click <b>Next</b>.
+        </p>
+        <a href="screenshots/15.png">
+			<img src="screenshots/15.png" />
+		</a>
+        <p>
+            Select the amount of hard disk space that you can allocate to the VM. Default 10 GB isn't enough space for us, so you should change it to something like 18 GB, and click <b>Create</b>.
+        </p>
+        <a href="screenshots/18.png">
+			<img src="screenshots/18.png" />
+		</a>
+        <p>
+            Now, you should once again be in the main VirtualBox Manager window with your newly created VM in the list. Click on the <b>Settings</b> button.
+        </p>
+        <a href="screenshots/16.png">
+			<img src="screenshots/16.png" />
+		</a>
+        <p>
+            Go to the <b>System</b> section and click on the <b>Processor</b> tab. Here you should probably increase the number of processor cores available to the VM because more cores available to the VM means more performance, and more performance means less time spent on waiting until the script on our VM finishes building the Padavan firmware. When you're done, click on the <b>OK</b> button.
+        </p>
+        <p>
+            Now we can finally start our VM. Press the <b>Start</b> button.
+        </p>
+        <a href="screenshots/17.png">
+			<img src="screenshots/17.png" />
+		</a>
+        <p>
+            You will be asked to select a start-up disk for your VM. This is the disk that your VM will boot from and from which you are going to install Linux onto your VM. Here you should select the Kubuntu image that you have downloaded earlier and click on the <b>Start</b> button. 
+        </p>
+        <a href="screenshots/19.png">
+			<img src="screenshots/19.png" />
+		</a>
+        <p>
+            If all goes well, you should see this screen soon. This means that we are finally in Linux! Now we should install it onto our VM. Select <b>Install Kubuntu</b> and follow the on-screen instructions, mostly using the default options, until you're asked whether you want a Normal or a Minimal installation.
+        </p>
+        <a href="screenshots/20.png">
+			<img src="screenshots/20.png" />
+		</a>
+        <p>
+            We don't need a lot of applications on our VM, so just choose Minimal installation to save space on your hard drive. Continue on with the installation process, using the default options.
+        </p>
+        <a href="screenshots/21.png">
+			<img src="screenshots/21.png" />
+		</a>
+        <p>
+            Soon enough, you will be asked to pick a username and a password. You are going to need this password, so don't forget it. Continue following the on-screen instructions.
+        </p>
+        <a href="screenshots/22.png">
+			<img src="screenshots/22.png" />
+		</a>
+        <p>
+            After you've gone through the installation process and Kubuntu has finished installing itself,  you're going to see this screen. Just press the <b>Restart Now</b> button and your VM will restart itself.
+        </p>
+        <a href="screenshots/23.png">
+			<img src="screenshots/23.png" />
+		</a>
+        <p>
+            After your VM restarts, you'll see this screen. Enter your password and click on the <b>Login</b> button.
+        </p>
+        <a href="screenshots/24.png">
+			<img src="screenshots/24.png" />
+		</a>
+        <p>
+            By now you should be on your VM's desktop. Click on the menu button (which looks like a letter <b>K</b>) at the bottom left corner and select <b>Konsole</b> to launch a terminal emulator. We will use it to download and launch a script called <a href="http://prometheus.freize.net/" rel="external">Prometheus</a>.
+        </p>
+        <h2 id="Build and flash Padavan">Build and flash Padavan</h2>
+        <p>
+            Now it's time to actually get Padavan. To do that, we will use Prometheus to build Padavan image from the source code.
+        </p>
+        <a href="screenshots/25.png">
+			<img src="screenshots/25.png" />
+		</a>
+        <p>
+            Type these three commands into the Konsole window to download and launch Prometheus:
+        </p>
+        <code>
+            wget -O start.sh http://prometheus.freize.net/script/start-99.sh<br>
+            chmod +x start.sh<br>
+            ./start.sh 
+        </code>
+        <a href="screenshots/26.png">
+			<img src="screenshots/26.png" />
+		</a>
+        <p>
+            You will be asked to type in your Linux account password. Type it in and press Enter to continue.
+        </p>
+        <a href="screenshots/27.png">
+			<img src="screenshots/27.png" />
+		</a>
+        <p>
+            Here, you'll be asked to choose a repository, but there's really only one choice: <a href="https://github.com/Linaro1985/padavan-ng" rel="external">Linaro's</a> repository, which is a more up-to-date fork of the original Padavan (which isn't even supported by the script anymore). So, just type in <code>1</code>. You'll get a warning, and after that, you'll have to choose a repository once again, just do the same thing that you just did.
+        </p>
+        <p>
+            Now, the script is going to download and install all the files that it needs to build your new router firmware, so just wait a little bit. You're going to just wait until the script finishes its job a few more times soon so it may be a good time to grab a cup of tea and put on some relaxing music.
+        </p>
+        <a href="screenshots/28.png">
+			<img src="screenshots/28.png" />
+		</a>
+        <p>
+            The script will load a list of all available configurations for different devices. Just type in <code>2</code> for Xiaomi and press Enter.
+        </p>
+        <a href="screenshots/29.png">
+			<img src="screenshots/29.png" />
+		</a>
+        <p>
+            Here, choose your router model, in our case we're entering <code>7</code> for Mi Router 3G.
+        </p>
+        <a href="screenshots/30.png">
+			<img src="screenshots/30.png" />
+		</a>
+        <p>
+            And here is the Prometheus main menu. At this step, we need to do three things: build a toolchain, build Padavan and flash Padavan. Let's start: press 3 and the script will start building the toolchain. It'll take some time, from a couple of minutes to an hour, or maybe more if you're on a very old machine: it depends on how powerful your PC is. Did you make yourself some tea?
+        </p>
+        <a href="screenshots/30.png">
+			<img src="screenshots/30.png" />
+		</a>
+        <p>
+            When it's done, you should see a <code style="color: aqua; background-color: black">&nbsp;Toolchain: </code><code style="color: lime; background-color: black">OK </code>&nbsp;line on your screen. If anything goes wrong, you'll see an error message on your screen, but if you've followed this guide closely, everything should be fine.
+        </p>
+        <p>
+            Now it's time to build the firmware. Press 4 to go into the Firmware menu.
+        </p>
+        <a href="screenshots/31.png">
+			<img src="screenshots/31.png" />
+		</a>
+        <p>
+            Here, you can go and add some skins to your firmware, if you would like to customize the appearance of your router's web interface. To do that, press 2 and the skins selection menu should appear. This is completely optional.
+        </p>
+        <p>
+            After that, press 3 to start building the firmware. Once again, the script will do the job by itself, you'll just chill for some time. This will also take from a couple of minutes to a couple of hours, depending on your hardware.
+        </p>
+        <a href="screenshots/32.png">
+			<img src="screenshots/32.png" />
+		</a>
+        <p>
+            When the script almost finishes building Padavan, it will ask you for your Linux password once again. Type it in and press Enter.
+        </p>
+        <a href="screenshots/33.png">
+			<img src="screenshots/33.png" />
+		</a>
+        <p>
+            That's it for building the firmware, you should see a green line telling you the size of the firmware image. Press any key on your keyboard and you'll get back to the Firmware menu.
+        </p>
+        <a href="screenshots/34.png">
+			<img src="screenshots/34.png" />
+		</a>
+        <p>
+            Now is the time to finally install Padavan on your router. Press 2 on your keyboard to edit SSH connection parameters.
+        </p>
+        <a href="screenshots/35.png">
+			<img src="screenshots/35.png" />
+		</a>
+        <p>
+            Type in <code>192.168.31.1</code> for the IP address.<br>
+            Remember when I asked you to write down your SSH login and password? We're finally going to use those.
+        </p>
+        <a href="screenshots/36.png">
+			<img src="screenshots/36.png" />
+		</a>
+        <p>
+            After you've entered the IP address, login, and password, you should see a screen telling you that SSH access to the router was granted. Now press 1 on your keyboard.
+        </p>
+        <a href="screenshots/37.png">
+			<img src="screenshots/37.png" />
+		</a>
+        <p>
+            You'll be asked if you would like to make a backup, just type in <code>n</code>. Next, type in <code>y</code> to confirm that you want to flash the firmware.
+        </p>
+        <a href="screenshots/38.png">
+			<img src="screenshots/38.png" />
+		</a>
+        <p>
+            And this was the last step of our Padavan installation journey! When the script finishes the flashing process, you'll see the new IP address of your router, network name and password, and login credentials for the web interface. All we have to do now is to reboot the router by typing in <code>y</code>. Wait until it reboots, and log in the web interface.
+        </p>
+        <a href="screenshots/39.png">
+			<img src="screenshots/39.png" />
+		</a>
+        <p>
+            And that's the screen we're looking for! From now on, your router runs Padavan. Now all that's left for you is to configure your router, do any customization that you'd like and install any additional packages that you want.
+        </p>
+        <p>
+            Congratulations to you if everything went smooth, thank you for reading this guide and good luck with exploring your router's capabilities!
+        </p>
+        
+        
+        
+        
+    </div>
+</body>
+</html>
